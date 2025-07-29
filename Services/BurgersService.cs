@@ -33,4 +33,9 @@ public class BurgersService
     Burger burger = _repository.CreateNewBurger(burgerData);
     return burger;
   }
+
+  internal void DeleteBurger(int burgerId)
+  {
+    _repository.DeleteBurger(burgerId);
+  }
 }

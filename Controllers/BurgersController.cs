@@ -1,4 +1,6 @@
 
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace burgershack_cs.Controllers;
 
 [ApiController]
@@ -48,6 +50,20 @@ public class BurgersController : ControllerBase
     {
       Burger burger = _burgersService.CreateNewBurger(burgerData);
       return Ok(burger);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+  [HttpDelete]
+  public ActionResult<string> DeleteFrog(int burgerId)
+  {
+    try
+    {
+      _burgersService.DeleteBurger(burgerId);
+      return Ok("Burger was deleted!");
     }
     catch (Exception exception)
     {

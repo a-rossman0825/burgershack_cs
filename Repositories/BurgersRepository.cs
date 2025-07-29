@@ -38,4 +38,21 @@ public class BurgersRepository
     Burger burger = _db.Query<Burger>(sql, burgerData).SingleOrDefault();
     return burger;
   }
+
+  internal void DeleteBurger(int burgerId)
+  {
+    string sql = "DELETE FROM burgers WHERE id = @BurgerId Limit 1;";
+
+    int rowsAffected = _db.Execute(sql, new { BurgerId = burgerId });
+
+    if (rowsAffected == 0)
+    {
+      throw new Exception($"Invalid Id: {burgerId}");
+    }
+    if (rowsAffected > 1)
+    {
+      throw new Exception($"{rowsAffected} rows have been deleted!!!!!");
+    }
+
+  }
 }
