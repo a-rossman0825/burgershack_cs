@@ -27,4 +27,10 @@ public class BurgersService
     }
     return burger;
   }
+
+  public Burger CreateNewBurger(Burger burgerData)
+  {
+    Burger burger = _repository.CreateNewBurger(burgerData);
+    return burger;
+  }
 }

@@ -40,4 +40,18 @@ public class BurgersController : ControllerBase
       return BadRequest(exception.Message);
     }
   }
+
+  [HttpPost]
+  public ActionResult<Burger> CreateNewBurger([FromBody] Burger burgerData)
+  {
+    try
+    {
+      Burger burger = _burgersService.CreateNewBurger(burgerData);
+      return Ok(burger);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }

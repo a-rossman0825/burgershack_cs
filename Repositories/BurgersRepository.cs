@@ -25,4 +25,17 @@ public class BurgersRepository
     Burger burger = _db.Query<Burger>(sql, new { BurgerId = burgerId }).SingleOrDefault();
     return burger;
   }
+
+  public Burger CreateNewBurger(Burger burgerData)
+  {
+    string sql = @"
+  INSERT INTO
+    burgers (name, price, toppings, is_lettuce_wrap, sauce, description)
+    VALUES(@name, @price, @toppings, @is_lettuce_wrap, @sauce, @description);
+    
+    SELECT * FROM burgers WHERE id = LAST_INSERT_ID();";
+
+    Burger burger = _db.Query<Burger>(sql, burgerData).SingleOrDefault();
+    return burger;
+  }
 }
