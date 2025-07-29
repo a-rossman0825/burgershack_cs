@@ -37,3 +37,5 @@ VALUES
     'special sauce',
     'The mcrib is back at mcdonald\'s, now for only $5.86! C\'mon down and eat it, Fatty!'
   );
+
+DELETE FROM burgers WHERE id = 5;

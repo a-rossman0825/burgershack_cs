@@ -1,6 +1,7 @@
 
 
 
+
 namespace burgershack_cs.Services;
 
 public class BurgersService
@@ -15,5 +16,15 @@ public class BurgersService
   {
     List<Burger> burgers = _repository.GetAllBurgers();
     return burgers;
+  }
+
+  public Burger GetBurgerById(int burgerId)
+  {
+    Burger burger = _repository.GetBurgerById(burgerId);
+    if (burger == null)
+    {
+      throw new Exception($"Invalid id: {burgerId}");
+    }
+    return burger;
   }
 }

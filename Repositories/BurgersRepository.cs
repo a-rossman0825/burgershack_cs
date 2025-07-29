@@ -1,4 +1,7 @@
 
+
+using System.Security.Cryptography.X509Certificates;
+
 namespace burgershack_cs.Repositories;
 
 public class BurgersRepository
@@ -14,5 +17,12 @@ public class BurgersRepository
     string sql = "SELECT * FROM burgers;";
     List<Burger> burgers = _db.Query<Burger>(sql).ToList();
     return burgers;
+  }
+
+  public Burger GetBurgerById(int burgerId)
+  {
+    string sql = $"SELECT * FROM burgers WHERE id = @BurgerId;";
+    Burger burger = _db.Query<Burger>(sql, new { BurgerId = burgerId }).SingleOrDefault();
+    return burger;
   }
 }
